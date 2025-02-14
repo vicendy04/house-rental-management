@@ -1,16 +1,13 @@
 package com.example.hrm.service;
 
 import com.example.hrm.domain.Company;
-import com.example.hrm.domain.Room;
 import com.example.hrm.dto.EditRoomRequest;
 import com.example.hrm.dto.NewRoomRequest;
 import com.example.hrm.dto.RoomDTO;
-import com.example.hrm.dto.RoomSearchCriteria;
 import com.example.hrm.repository.CompanyRepository;
 import com.example.hrm.repository.RoomRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,13 +23,6 @@ public class RoomService {
     public RoomService(RoomRepository roomRepository, CompanyRepository companyRepository) {
         this.roomRepository = roomRepository;
         this.companyRepository = companyRepository;
-    }
-
-    @Transactional(readOnly = true)
-    public RoomDTO getRoom(Long id) {
-        var room = roomRepository.findDetailById(id)
-                .orElseThrow(() -> new RuntimeException("Room not found"));
-        return ROOM_MAPPER.toDto(room);
     }
 
     @Transactional
@@ -60,15 +50,10 @@ public class RoomService {
     }
 
     @Transactional(readOnly = true)
-    public Page<RoomDTO> listRooms(Pageable pageable) {
-        Page<Room> rooms = roomRepository.listRooms(pageable);
-        return rooms.map(ROOM_MAPPER::toDto);
-    }
-
-    @Transactional(readOnly = true)
-    public Page<RoomDTO> search(RoomSearchCriteria criteria, PageRequest pageRequest) {
-        Page<Room> searched = roomRepository.search(criteria.getBuildingName(), pageRequest);
-        return searched.map(ROOM_MAPPER::toDto);
+    public Page<Long> searchForIds(String buildingName, Pageable pageable) {
+        if (buildingName == null || buildingName.trim().isEmpty())
+            return roomRepository.findIds(pageable);
+        return roomRepository.searchForIds(buildingName, pageable);
     }
 
     private Company getCompanyOrThrow(Long id) {

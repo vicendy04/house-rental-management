@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @Setter
 @SQLDelete(sql = "UPDATE room SET deleted = true WHERE id=?")
 @SQLRestriction("deleted=false")
-@Table
+@Table(indexes = {@Index(name = "idx_building_name", columnList = "buildingName")})
 @Entity
 public class Room {
     @Id
