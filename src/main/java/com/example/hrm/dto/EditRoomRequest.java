@@ -1,5 +1,6 @@
 package com.example.hrm.dto;
 
+import com.example.hrm.domain.RoomStatus;
 import com.example.hrm.domain.RoomType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -39,8 +40,8 @@ public class EditRoomRequest {
     @Positive(message = "Middle term price must be positive")
     private BigDecimal middleTermPrice;
 
-    @NotBlank(message = "Status is required")
-    private String status;
+    @NotNull(message = "Status is required")
+    private RoomStatus status;
 
     @NotBlank(message = "Image URL is required")
     private String imageUrl;

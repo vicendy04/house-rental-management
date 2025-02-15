@@ -44,8 +44,9 @@ public class Room {
     @Column(nullable = false)
     private BigDecimal middleTermPrice; // 75,000円/月
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String status;
+    private RoomStatus status = RoomStatus.AVAILABLE;
 
     @Column(nullable = false)
     private String imageUrl;

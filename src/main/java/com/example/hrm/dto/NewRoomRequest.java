@@ -39,9 +39,6 @@ public class NewRoomRequest {
     @Positive(message = "Middle term price must be positive")
     private BigDecimal middleTermPrice;
 
-    @NotBlank(message = "Status is required")
-    private String status;
-
     @NotBlank(message = "Image URL is required")
     private String imageUrl;
 }
