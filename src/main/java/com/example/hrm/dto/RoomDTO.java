@@ -16,6 +16,7 @@ public class RoomDTO {
     private String roomNumber;
     private String roomType;
     private String address;
+    private String nearestStation;
     private String buildingName;
     private Company company;
     private BigDecimal shortTermPrice;

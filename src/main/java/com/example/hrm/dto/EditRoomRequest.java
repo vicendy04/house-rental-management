@@ -26,6 +26,9 @@ public class EditRoomRequest {
     @NotBlank(message = "Address is required")
     private String address;
 
+    @NotBlank(message = "Nearest station is required")
+    private String nearestStation;
+
     @NotBlank(message = "Building name is required")
     private String buildingName;
 

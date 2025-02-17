@@ -1,0 +1,8 @@
+*.iml
+*.log
+*.md
+*.iws
+.idea/
+.sonar/
+.sonarlint/
+target/

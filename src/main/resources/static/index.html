@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Room Management System</title>
+    <title>Apartment for rent</title>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div x-data="roomManager()" class="container">
     <header class="header">
-        <h1>Register all the rooms you manage.</h1>
+        <h1>Apartment for rent</h1>
         <div class="header-actions">
-            <input type="text" x-model="searchTerm" @input.debounce="search()" placeholder="Filter search"
+            <input type="text" x-model="searchTerm" @input.debounce="search()" placeholder="  Filter search"
                    class="search-box">
             <select x-model="priceSort" @change="handlePriceSort()" class="sort-dropdown">
                 <option value="">Sort by price</option>
@@ -36,9 +36,10 @@
                     <span>Type</span> /
                     <span>ID</span> /
                     <span>Address</span> /
-                    <span>Building Name</span> /
+                    <span>Nearest Station</span> /
+                    <span>Building Name</span>
                 </div>
-                <div class="column">Basic Pricing Plan</div>
+                <div class="column">Rent Fee</div>
                 <div class="column">Status</div>
                 <div class="column">Actions</div>
             </div>
@@ -55,6 +56,7 @@
                         </div>
                         <div class="room-id">ID: <span x-text="room.id"></span></div>
                         <div class="room-address" x-text="room.address"></div>
+                        <div class="room-nearestStation" x-text="room.nearestStation"></div>
                         <div class="room-building" x-text="room.buildingName"></div>
                         <div class="room-company" x-text="room.company.name"></div>
                     </div>
@@ -117,15 +119,23 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Building Name</label>
-                                        <input type="text" x-model="createForm.buildingName" required>
+                                        <label>Nearest Station</label>
+                                        <input type="text" x-model="createForm.nearestStation" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Company ID</label>
-                                        <input type="number" x-model="createForm.companyId" required>
+                                        <label>Building Name</label>
+                                        <input type="text" x-model="createForm.buildingName" required>
                                     </div>
-
+                                    <div class="form-group">
+                                        <label>Company</label>
+                                        <select x-model="createForm.companyId" required>
+                                            <option value="">Select company</option>
+                                            <option value="1">Company A</option>
+                                            <option value="2">Company B</option>
+                                            <option value="3">Company C</option>
+                                        </select>
+                                    </div>
                                     <div class="form-group">
                                         <label>Short Term Price (yen/day)</label>
                                         <input type="number" x-model="createForm.shortTermPrice" min="0" required>
@@ -177,13 +187,23 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label>Nearest Station</label>
+                                        <input type="text" x-model="editForm.nearestStation" required>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label>Building Name</label>
                                         <input type="text" x-model="editForm.buildingName" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Company ID</label>
-                                        <input type="number" x-model="editForm.companyId" required>
+                                        <label>Company</label>
+                                        <select x-model="editForm.companyId" required>
+                                            <option value="">Select company</option>
+                                            <option value="1">Company A</option>
+                                            <option value="2">Company B</option>
+                                            <option value="3">Company C</option>
+                                        </select>
                                     </div>
 
                                     <div class="form-group">

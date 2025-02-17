@@ -57,7 +57,7 @@ public class RoomController {
     @GetMapping
     public ResponseEntity<Page<RoomDTO>> list(
             @RequestParam(required = false) String buildingName,
-            @PageableDefault(size = 20) Pageable pageable
+            @PageableDefault(size = 5) Pageable pageable
     ) {
         Page<Long> pagedRoomIds = roomService.searchForIds(buildingName, pageable);
         List<RoomDTO> rooms = List.copyOf(cache.getAll(pagedRoomIds).values());

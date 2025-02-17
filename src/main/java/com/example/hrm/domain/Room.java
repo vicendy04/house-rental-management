@@ -31,6 +31,9 @@ public class Room {
     @Column(nullable = false)
     private String address;
 
+    @Column(nullable = true)
+    private String nearestStation;
+
     @Column(nullable = false)
     private String buildingName;
 
